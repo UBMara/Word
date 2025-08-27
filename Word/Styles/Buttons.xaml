@@ -67,4 +67,101 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+ 
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BasicStyle}">
+        <Setter Property="Background" Value="{StaticResource OrangeForegroundBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource LighterBackgroundBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+        <Setter Property="Padding" Value="50 10" />
+        <Setter Property="Margin" Value="0 10" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" 
+                            Background="{TemplateBinding Background}" 
+                            CornerRadius="10"
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            SnapsToDevicePixels="true">
+                        <TextBlock Text="{TemplateBinding Content}"
+                                   Focusable="False" 
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                   Margin="{TemplateBinding Padding}"
+                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource BlueForeground}" 
+                                                    Duration="0:0:0.2"
+                                                    Storyboard.TargetName="border"
+                                                    Storyboard.TargetProperty="Background.Color"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource OrangeForeground}" 
+                                                    Duration="0:0:0.2"
+                                                    Storyboard.TargetName="border"
+                                                    Storyboard.TargetProperty="Background.Color"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" 
+                                    TargetName="border" 
+                                    Value="{StaticResource LightBackgroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TextButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BasicStyle}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource LighterBackgroundBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="{StaticResource RegularFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+        <Setter Property="Padding" Value="50 10" />
+        <Setter Property="Margin" Value="0 10" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" 
+                        Background="{TemplateBinding Background}" 
+                        CornerRadius="10"
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        SnapsToDevicePixels="true">
+                        <TextBlock Text="{TemplateBinding Content}"
+                               Focusable="False" 
+                               FontFamily="{TemplateBinding FontFamily}"
+                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                               Margin="{TemplateBinding Padding}"
+                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource OrangeForegroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{StaticResource LightBackgroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

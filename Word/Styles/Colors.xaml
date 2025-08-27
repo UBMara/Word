@@ -20,11 +20,17 @@
     <Color x:Key="DarkerForeground">black</Color>
     <SolidColorBrush x:Key="DarkerForegroundBrush" Color="{StaticResource DarkerForeground}" />
 
-    <Color x:Key="BlueForeground">Blue</Color>
+    <Color x:Key="BlueForeground">DeepskyBlue</Color>
     <SolidColorBrush x:Key="BlueForegroundBrush" Color="{StaticResource BlueForeground}" />
-    
+
+    <Color x:Key="DarkBlueForeground">Blue</Color>
+    <SolidColorBrush x:Key="DarkBlueForegroundBrush" Color="{StaticResource DarkBlueForeground}" />
+
     <Color x:Key="YellowForeground">gold</Color>
     <SolidColorBrush x:Key="YellowForegroundBrush" Color="{StaticResource YellowForeground}" />
+
+    <Color x:Key="OrangeForeground">Orange</Color>
+    <SolidColorBrush x:Key="OrangeForegroundBrush" Color="{StaticResource OrangeForeground}" />
 
     <Color x:Key="RedForeground">crimson</Color>
     <SolidColorBrush x:Key="RedForegroundBrush" Color="{StaticResource RedForeground}" />
