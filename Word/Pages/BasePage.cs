@@ -14,10 +14,10 @@ namespace Word
     {
         private VM? _viewModel;
 
-        public PageAnimation PageLoad { get { return PageAnimation.SlideAndFadeRight; } }
-        public PageAnimation PageUnload { get { return PageAnimation.SlideAndFadeLeft; } }
+        public PageAnimation PageLoad { get; set; } = PageAnimation.SlideAndFadeRight;
+        public PageAnimation PageUnload { get; set; } = PageAnimation.SlideAndFadeLeft;
 
-        public int SlideSec { get; set; }
+        public float SlideSec { get; set; } = 0.8f;
 
         public VM ViewModel
         {
@@ -53,7 +53,7 @@ namespace Word
             {
                 case PageAnimation.SlideAndFadeRight:
                    await this.SlideAndFadeFromRight(this.SlideSec);
-                    break;
+                   break;
             }
         }
 

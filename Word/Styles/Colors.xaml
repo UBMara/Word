@@ -14,16 +14,25 @@
     <Color x:Key="MainForeground">gray</Color>
     <SolidColorBrush x:Key="MainForegroundBrush" Color="{StaticResource MainForeground}" />
 
+    <Color x:Key="GrayForeground">#A8A8A8</Color>
+    <SolidColorBrush x:Key="GrayForegroundBrush" Color="{StaticResource GrayForeground}" />
+
     <Color x:Key="DarkForeground">#0F0B26</Color>
     <SolidColorBrush x:Key="DarkForegroundBrush" Color="{StaticResource DarkForeground}" />
 
     <Color x:Key="DarkerForeground">black</Color>
     <SolidColorBrush x:Key="DarkerForegroundBrush" Color="{StaticResource DarkerForeground}" />
 
-    <Color x:Key="BlueForeground">DeepskyBlue</Color>
+    <Color x:Key="LighterBlueForeground">Aqua</Color>
+    <SolidColorBrush x:Key="LighterBlueForegroundBrush" Color="{StaticResource LighterBlueForeground}" />
+
+    <Color x:Key="LightBlueForeground">deepskyblue</Color>
+    <SolidColorBrush x:Key="LightBlueForegroundBrush" Color="{StaticResource LightBlueForeground}" />
+
+    <Color x:Key="BlueForeground">DodgerBlue</Color>
     <SolidColorBrush x:Key="BlueForegroundBrush" Color="{StaticResource BlueForeground}" />
 
-    <Color x:Key="DarkBlueForeground">Blue</Color>
+    <Color x:Key="DarkBlueForeground">DarkBlue</Color>
     <SolidColorBrush x:Key="DarkBlueForegroundBrush" Color="{StaticResource DarkBlueForeground}" />
 
     <Color x:Key="YellowForeground">gold</Color>

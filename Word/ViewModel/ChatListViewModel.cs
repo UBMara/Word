@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Word
 {
-    public enum ApplicationPage
+    public class ChatListViewModel : BaseViewModel
     {
-        Login = 0,
-        Chat = 1,
+        public List <ChatListItemViewModel> Items { get; set; }
     }
 }

@@ -93,13 +93,21 @@
 
     <Border Background="{StaticResource BlueForegroundBrush}">
         <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            
             <Grid.Background>
                 <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500" ImageSource="/Images/emoji-background.png" />
             </Grid.Background>
 
-            <Frame x:Name="MainPage" 
-               Content="{Binding CurrentPage, Converter={custom:ApplicationPageValueConverter}}"
-               Background="Transparent"/>
+            <Frame Grid.Column="1" x:Name="MainPage" 
+                   Content="{Binding CurrentPage, Converter={custom:ApplicationPageValueConverter}}"
+                   Background="Transparent"/>
+            <local:SideMenuControl>
+                <local:ChatListItemControl Height="60" VerticalAlignment="Top"/>
+            </local:SideMenuControl>
         </Grid>
     </Border>
 </Window>

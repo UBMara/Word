@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Input;
-using Word.Models;
 
 namespace Word.ViewModel
 {
@@ -19,7 +18,7 @@ namespace Word.ViewModel
         private int _windowRadius = 10;
        
 
-        public double MinWidth { get; set; } = 400;
+        public double MinWidth { get; set; } = 800;
         public double MinHeight { get; set; } = 400;
 
         public ICommand MinCommand { get; set; }
@@ -67,7 +66,7 @@ namespace Word.ViewModel
 
         public GridLength TitleHeightLength { get { return new GridLength(TitleHeight + ResizeBorder); } }
 
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
+        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Chat;
         public WindowViewModel(Window window)
         {
             _window = window;

@@ -26,21 +26,13 @@ namespace Word
 
         public async Task Login(object parameter)
         {
-            if (LoginIsRunning) return;
-
-            LoginIsRunning = true;
-
-            try
+            await RunCommand(() => this.LoginIsRunning, async () =>
             {
                 await Task.Delay(5000);
 
                 var email = this.Email;
                 var pass = (parameter as IHavePassword).SecurePassword.Unsecure();
-
-                LoginIsRunning = false;
-            }
-            catch { }
-            finally { LoginIsRunning = false; }
+            });
         }
     }
 }

@@ -1,27 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
+using Word.Converters;
 
-namespace Word.Converters
+namespace Word
 {
-    public class ApplicationPageValueConverter : BaseConverter<ApplicationPageValueConverter>
+    class StringtoBrushConverter : BaseConverter<BooleanToVisiblityConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            switch ((ApplicationPage)value) 
-            {
-                case ApplicationPage.Login: return new LoginPage();
-
-                case ApplicationPage.Chat: return new ChatPage();
-
-                default:
-                    Debugger.Break();
-                    return null;
-            }
+            return (SolidColorBrush)(new BrushConverter().ConvertFrom($"#{value}"));
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Media.Animation;
 
 namespace Word
-{ 
+{
     public static class StoryboardHelp
     {
         public static void AddSlideRight(this Storyboard storyboard, float sec, double offset, float deceleration = 0.09f)
@@ -52,7 +52,6 @@ namespace Word
             storyboard.Children.Add(animation);
 
         }
-
         public static void AddFadeOut(this Storyboard storyboard, float sec)
         {
             var animation = new DoubleAnimation
