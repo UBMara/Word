@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Security;
 using System.Windows.Input;
 
-namespace Word
+namespace Word.Core.ViewModel
 {
     public class LoginViewModel : BaseViewModel
     {
@@ -17,11 +11,22 @@ namespace Word
 
         public SecureString? Password { get; set; }
 
+        public ICommand RegisterCommand { get; set; }
+
         public ICommand LoginCommand { get; set; }
 
         public LoginViewModel()
         {
             LoginCommand = new RelayparameterizedCommand(async(parameter) => await Login(parameter));
+            RegisterCommand = new RelayCommand(async () => await Register());
+        }
+
+        public async Task Register()
+        {
+            IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.Register;
+
+
+            await Task.Delay(1);
         }
 
         public async Task Login(object parameter)
@@ -30,8 +35,6 @@ namespace Word
             {
                 await Task.Delay(5000);
 
-                var email = this.Email;
-                var pass = (parameter as IHavePassword).SecurePassword.Unsecure();
             });
         }
     }

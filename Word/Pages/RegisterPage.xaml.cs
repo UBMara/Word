@@ -3,10 +3,10 @@ using Word.Core.ViewModel;
 
 namespace Word
 {
-    public partial class LoginPage : BasePage<LoginViewModel>, IHavePassword
+    public partial class RegisterPage : BasePage<LoginViewModel>, IHavePassword
 
     {
-        public LoginPage()
+        public RegisterPage()
         {
             InitializeComponent();
 

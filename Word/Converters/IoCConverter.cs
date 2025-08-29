@@ -1,21 +1,19 @@
-﻿using System.Diagnostics;
+﻿using Ninject;
+using System.Diagnostics;
 using System.Globalization;
 using Word.Converters;
 using Word.Core;
+using Word.Core.ViewModel;
 
 namespace Word
 {
-    public class ApplicationPageValueConverter : BaseConverter<ApplicationPageValueConverter>
+    public class IoCConverter : BaseConverter<IoCConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            switch ((ApplicationPage)value) 
+            switch ((string)value)
             {
-                case ApplicationPage.Login: return new LoginPage();
-
-                case ApplicationPage.Register: return new RegisterPage();
-
-                case ApplicationPage.Chat: return new ChatPage();
+                case nameof(ApplicationPage): return IoC.Get<ApplicationViewModel>();
 
                 default:
                     Debugger.Break();

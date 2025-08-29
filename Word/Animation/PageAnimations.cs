@@ -16,7 +16,9 @@ namespace Word
                 await Task.Delay((int)(sec * 1000));
             }
 
-            public static async Task SlideAndFadeToLeft(this Page page, float sec)
+
+
+        public static async Task SlideAndFadeToLeft(this Page page, float sec)
             {
                 var sb = new Storyboard();
                 sb.AddSlideLeft(sec, page.WindowWidth);

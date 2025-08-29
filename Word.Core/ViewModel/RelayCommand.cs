@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Word
+namespace Word.Core.ViewModel
 {
     public class RelayCommand : ICommand
     {

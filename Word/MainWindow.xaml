@@ -9,6 +9,7 @@
         d:DataContext="{d:DesignInstance Type=viewmodel:WindowViewModel}"
         Icon="pack://application:,,,/Images/logo-small.png"
         WindowStyle="None"
+        x:Name="AppWindow"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         mc:Ignorable="d"
@@ -73,7 +74,7 @@
                                         </StackPanel>
                                     </Grid>
 
-                                    <Border Grid.Row="1" Padding="{Binding InnerPadding}">
+                                    <Border Grid.Row="1" Padding="{Binding InnerPadding}" ClipToBounds="True">
                                         <ContentPresenter Content="{TemplateBinding Content}" />
                                     </Border>
                                 </Grid>
@@ -97,15 +98,19 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid.Background>
                 <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500" ImageSource="/Images/emoji-background.png" />
             </Grid.Background>
 
             <Frame Grid.Column="1" x:Name="MainPage" 
-                   Content="{Binding CurrentPage, Converter={custom:ApplicationPageValueConverter}}"
+                   Content="{Binding ApplicationViewModel.CurrentPage, 
+                            Source={x:Static local:ViewModelLocator.Instance}, 
+                            Converter={local:ApplicationPageValueConverter}}" 
                    Background="Transparent"/>
-            <local:SideMenuControl>
+
+            <local:SideMenuControl Width="300" local:AnimateSlideLeft.Value ="{Binding ApplicationViewModel.SideMenuVisible, 
+                                     Source={x:Static local:ViewModelLocator.Instance}}">
                 <local:ChatListItemControl Height="60" VerticalAlignment="Top"/>
             </local:SideMenuControl>
         </Grid>

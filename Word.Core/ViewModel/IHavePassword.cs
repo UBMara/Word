@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Word
+namespace Word.Core.ViewModel
 {
-    public class ChatListViewModel : BaseViewModel
+    public interface IHavePassword
     {
-        public List <ChatListItemViewModel> Items { get; set; }
+        SecureString SecurePassword { get; }
     }
 }

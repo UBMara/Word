@@ -6,7 +6,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Word
+namespace Word.Core
 {
     public static class SecureStringHelp
     {

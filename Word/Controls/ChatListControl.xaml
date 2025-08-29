@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Word"
+             xmlns:core="clr-namespace:Word.Core.ViewModel;assembly=Word.Core"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid d:DataContext="{x:Static local:ChatLDesignViewModel.Instance}" Background="{StaticResource LightForegroundBrush}">
+    <Grid d:DataContext="{x:Static core:ChatLDesignViewModel.Instance}" Background="{StaticResource LightForegroundBrush}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding Items}">
                 <ItemsControl.ItemTemplate>

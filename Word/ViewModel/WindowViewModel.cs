@@ -1,12 +1,7 @@
 ﻿using Fasetto.Word;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Automation;
 using System.Windows.Input;
+using Word.Core.ViewModel;
 
 namespace Word.ViewModel
 {
@@ -27,13 +22,12 @@ namespace Word.ViewModel
         public ICommand MenuCommand {  get; set; }
 
          private WindowDockPosition _dockPosition = WindowDockPosition.Undocked;
-        public int ResizeBorder { get { return Borderless ? 0 : 6; } }
+        public int ResizeBorder => Borderless ? 0 : 6; 
+        public Thickness ResizeBorderThick => new Thickness(ResizeBorder + OuterMarginSize);
+        public bool Borderless => (_window.WindowState == WindowState.Maximized || _dockPosition != WindowDockPosition.Undocked); 
 
-        public Thickness ResizeBorderThick { get { return new Thickness(ResizeBorder + OuterMarginSize); } }
-        public bool Borderless { get { return (_window.WindowState == WindowState.Maximized || _dockPosition != WindowDockPosition.Undocked); } }
 
-
-        public Thickness InnerPadding { get { return new Thickness(ResizeBorder); } }
+        public Thickness InnerPadding => new Thickness(ResizeBorder); 
         public int OuterMarginSize
         {
             get
@@ -46,7 +40,7 @@ namespace Word.ViewModel
             }
         }
 
-        public Thickness OuterMarginSizeThick { get { return new Thickness(OuterMarginSize); } }
+        public Thickness OuterMarginSizeThick => new Thickness(OuterMarginSize);
 
         public int WindowRadius
         {
@@ -60,13 +54,12 @@ namespace Word.ViewModel
             }
         }
 
-        public CornerRadius CornerRadius { get { return new CornerRadius(WindowRadius); } }
+        public CornerRadius CornerRadius => new CornerRadius(WindowRadius);
 
         public int TitleHeight { get; set; } = 42;
 
-        public GridLength TitleHeightLength { get { return new GridLength(TitleHeight + ResizeBorder); } }
+        public GridLength TitleHeightLength => new GridLength(TitleHeight + ResizeBorder);
 
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Chat;
         public WindowViewModel(Window window)
         {
             _window = window;
