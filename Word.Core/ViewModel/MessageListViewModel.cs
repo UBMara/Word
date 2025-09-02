@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Word.Core.ViewModel
 { 
-    public class ChatListViewModel : BaseViewModel
+    public class MessageListViewModel : BaseViewModel
     {
-        public List<ChatListItemViewModel> Items { get; set; }
+        public List<MessageListItemViewModel> Items { get; set; }
     }
 }

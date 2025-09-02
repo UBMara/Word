@@ -4,40 +4,28 @@ using Word.Core.ViewModel;
 
 namespace Word
 {
-    public class BasePage<VM> : Page
-        where VM : BaseViewModel, new()
+    public class BasePage : Page
     {
-        private VM? _viewModel;
-
         public PageAnimation PageLoad { get; set; } = PageAnimation.SlideAndFadeRight;
         public PageAnimation PageUnload { get; set; } = PageAnimation.SlideAndFadeLeft;
 
         public float SlideSec { get; set; } = 0.8f;
-
-        public VM ViewModel
-        {
-            get { return _viewModel; }
-            set
-            {
-                if (_viewModel == value) return;
-
-                _viewModel = value;
-                this.DataContext = _viewModel;
-            }
-        }
+        
+        public bool ShouldAnimateOut { get; set; }
         public BasePage()
         {
             if (this.PageLoad != PageAnimation.None)
                 this.Visibility = Visibility.Collapsed;
 
             this.Loaded += BasePage_Loaded;
-            this.ViewModel = new VM();
 
         }
 
         private async void BasePage_Loaded(object sender, RoutedEventArgs e)
         {
-            await AnimateIn();
+            if (ShouldAnimateOut)
+                await AnimateOut();
+            else await AnimateIn();
         }
 
         public async Task AnimateIn()
@@ -47,8 +35,8 @@ namespace Word
             switch (this.PageLoad)
             {
                 case PageAnimation.SlideAndFadeRight:
-                   await this.SlideAndFadeFromRight(this.SlideSec);
-                   break;
+                    await this.SlideAndFadeFromRight(this.SlideSec);
+                    break;
             }
         }
 
@@ -63,5 +51,29 @@ namespace Word
                     break;
             }
         }
+    }
+
+    public class BasePage<VM> : BasePage
+        where VM : BaseViewModel, new()
+    {
+        private VM? _viewModel;
+
+        public VM ViewModel
+        {
+            get { return _viewModel; }
+            set
+            {
+                if (_viewModel == value) return;
+
+                _viewModel = value;
+                this.DataContext = _viewModel;
+            }
+        }
+
+        public BasePage() : base()
+        {
+            ViewModel = new VM();
+        }
+
     }
 }

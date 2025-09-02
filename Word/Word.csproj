@@ -77,6 +77,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Controls\ChatMessageListControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\RegisterPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

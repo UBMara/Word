@@ -57,7 +57,7 @@
                                         <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
                                             <StackPanel>
                                                 <TextBlock FontFamily="{StaticResource LatoBold}"
-                                                           FontSize="{StaticResource RegularFontSize}"
+                                                           FontSize="{StaticResource LargeFontSize}"
                                                            Margin="0 0 0 -5">
                                                     <Run Text="W" Foreground="{StaticResource YellowForegroundBrush}"/><Run Text="O" Foreground="{StaticResource BlueForegroundBrush}"/><Run Text="R" Foreground="{StaticResource RedForegroundBrush}"/><Run Text="D" Foreground="{StaticResource GreenForegroundBrush}"/>
                                                 </TextBlock>
@@ -95,19 +95,18 @@
     <Border Background="{StaticResource BlueForegroundBrush}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.Background>
                 <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500" ImageSource="/Images/emoji-background.png" />
             </Grid.Background>
 
-            <Frame Grid.Column="1" x:Name="MainPage" 
-                   Content="{Binding ApplicationViewModel.CurrentPage, 
-                            Source={x:Static local:ViewModelLocator.Instance}, 
-                            Converter={local:ApplicationPageValueConverter}}" 
-                   Background="Transparent"/>
+            <local:PageHost Grid.Column="1"
+                  local:PageHost.CurrentPage="{Binding ApplicationViewModel.CurrentPage, 
+                                 Source={x:Static local:ViewModelLocator.Instance}, 
+                                 Converter={local:ApplicationPageValueConverter}}"/>
 
             <local:SideMenuControl Width="300" local:AnimateSlideLeft.Value ="{Binding ApplicationViewModel.SideMenuVisible, 
                                      Source={x:Static local:ViewModelLocator.Instance}}">

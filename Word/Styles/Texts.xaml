@@ -9,7 +9,7 @@
     </Style>
 
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BasicStyle}">
-        <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"/>
+        <Setter Property="FontSize" Value="{StaticResource XXLargeFontSize}"/>
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}"/>
         <Setter Property="Padding" Value="10"/>
         <Setter Property="Margin" Value="0 5"/>
@@ -38,6 +38,7 @@
                                    Text="{TemplateBinding Tag}"
                                    x:Name="placeholder"
                                    FontFamily="{StaticResource LatoThin}"
+                                   FontSize="{TemplateBinding FontSize}"
                                    Padding="{TemplateBinding Padding}"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
@@ -72,7 +73,7 @@
     </Style>
     
     <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource BasicStyle}">
-        <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"/>
+        <Setter Property="FontSize" Value="{StaticResource XXLargeFontSize}"/>
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}"/>
         <Setter Property="Padding" Value="10"/>
         <Setter Property="Margin" Value="0 5"/>

@@ -1,4 +1,5 @@
-﻿using Word.Core.ViewModel;
+﻿using System.Collections.ObjectModel;
+using Word.Core.ViewModel;
 
 namespace Word.Core
 {

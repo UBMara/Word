@@ -9,16 +9,9 @@
       mc:Ignorable="d" 
       x:Name="Page"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ChatPage">
+      Title="Chat">
 
-    <Border Background="{StaticResource BlueForegroundBrush}">
-        <Grid>
-            <Grid.Background>
-                <ImageBrush TileMode="Tile" 
-                ViewportUnits="Absolute"
-                Viewport="0 0 500 500"
-                ImageSource="/Images/emoji-background.png"/>
-            </Grid.Background>
-        </Grid>
+    <Border>
+        <local:ChatMessageListControl />
     </Border>
 </local:BasePage>

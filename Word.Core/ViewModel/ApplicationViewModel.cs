@@ -1,16 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Word.Core.ViewModel
+﻿namespace Word.Core.ViewModel
 {
-    public  class ApplicationViewModel
+    public class ApplicationViewModel : BaseViewModel
     {
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
+        private ApplicationPage _currentPage = ApplicationPage.Login;
+        public ApplicationPage CurrentPage
+        {
+            get => _currentPage;
+            set
+            {
+                _currentPage = value;
+                OnPropertyChanged(nameof(CurrentPage));
+            }
+        }
 
         public bool SideMenuVisible { get; set; } = false;
 
+        public void GoToPage(ApplicationPage page)
+        {
+            CurrentPage = page;
+            SideMenuVisible = page == ApplicationPage.Chat;
+
+        }
     }
+
 }

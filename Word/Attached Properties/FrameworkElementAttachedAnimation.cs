@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media.Animation;
+﻿using System.Windows;
 
 namespace Word
 {
@@ -17,16 +15,17 @@ namespace Word
 
             if(FirstLoad)
             {
-                RoutedEventHandler onLoad = null;
-                onLoad = (ss, ee) =>
+                RoutedEventHandler onLoaded = null;
+                onLoaded = (ss, ee) =>
                 {
-                    element.Loaded -= onLoad;
+                    element.Loaded -= onLoaded;
 
                     DoAnimation(element, (bool)value);
+                    FirstLoad = false;
                 };
 
-                element.Loaded += onLoad;
-                FirstLoad = false;
+                element.Loaded += onLoaded;
+                
             }
             else
             {

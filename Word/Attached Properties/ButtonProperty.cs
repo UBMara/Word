@@ -1,9 +1,5 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace Word
+﻿namespace Word
 {
-
     public class IsBusyProperty : BaseAttachedProperty<IsBusyProperty, bool>
     {
         

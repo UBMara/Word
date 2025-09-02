@@ -3,7 +3,7 @@
 namespace Word
 {
     public abstract class BaseAttachedProperty<Parent, Property>
-        where Parent : BaseAttachedProperty<Parent, Property>, new ()
+        where Parent : new ()
     {
         public static Parent Instance { get; private set; } = new Parent();
 
@@ -21,16 +21,16 @@ namespace Word
 
         private static void OnValuePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            Instance.OnValueChanged(d, e);
+            (Instance as BaseAttachedProperty<Parent, Property>)?.OnValueChanged(d, e);
 
-            Instance.ValueChanged(d, e);
+            (Instance as BaseAttachedProperty<Parent, Property>)?.ValueChanged(d, e);
         }
 
         private static object OnValuePropertyUpdated(DependencyObject d, object value)
         {
-            Instance.OnValueUpdated(d, value);
+            (Instance as BaseAttachedProperty<Parent, Property>)?.OnValueUpdated(d, value);
 
-            Instance.ValueUpdated(d, value);
+            (Instance as BaseAttachedProperty<Parent, Property>)?.ValueUpdated(d, value);
 
             return value;
         }

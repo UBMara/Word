@@ -5,7 +5,7 @@ namespace Word
 {
     public static class StoryboardHelp
     {
-        public static void AddSlideRight(this Storyboard storyboard, float sec, double offset, float deceleration = 0.09f, bool keepMargin = true)
+        public static void AddSlideRight(this Storyboard storyboard, float sec, double offset, float deceleration = 0.9f, bool keepMargin = true)
         {
             var animation = new ThicknessAnimation
             {
@@ -20,7 +20,7 @@ namespace Word
 
         }
 
-        public static void AddSlideFromLeft(this Storyboard storyboard, float sec, double offset, float deceleration = 0.09f, bool keepMargin = true)
+        public static void AddSlideFromLeft(this Storyboard storyboard, float sec, double offset, float deceleration = 0.9f, bool keepMargin = true)
         {
             var animation = new ThicknessAnimation
             {
@@ -48,7 +48,7 @@ namespace Word
             storyboard.Children.Add(animation);
         }
 
-        public static void AddSlideLeft(this Storyboard storyboard, float sec, double offset, float deceleration = 0.09f, bool keepMargin = true)
+        public static void AddSlideLeft(this Storyboard storyboard, float sec, double offset, float deceleration = 0.9f, bool keepMargin = true)
         {
             var animation = new ThicknessAnimation
             {
@@ -63,7 +63,7 @@ namespace Word
 
         }
 
-        public static void AddSlideToRight(this Storyboard storyboard, float sec, double offset, float deceleration = 0.09f, bool keepMargin = true)
+        public static void AddSlideToRight(this Storyboard storyboard, float sec, double offset, float deceleration = 0.9f, bool keepMargin = true)
         {
             var animation = new ThicknessAnimation
             {

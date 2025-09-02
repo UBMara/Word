@@ -9,6 +9,7 @@
 
     <Style TargetType="{x:Type Control}" x:Key="BasicStyle">
         <Setter Property="FontFamily" Value="{StaticResource LatoThin}"/>
+        <Setter Property="FontSize" Value="{StaticResource RegularFontSize}"/>
     </Style>
 
     <Style TargetType="{x:Type TextBlock}" x:Key="BasicTextBlockStyle">
@@ -21,10 +22,12 @@
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BasicStyle}"/>
     <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource BasicStyle}"/>
 
-    <system:Double x:Key="RegularFontSize">20</system:Double>
-    <system:Double x:Key="AverageFontSize">18</system:Double>
-    <system:Double x:Key="SmallFontSize">14</system:Double>
-    <system:Double x:Key="LargeFontSize">30</system:Double>
+    <system:Double x:Key="LargeFontSize">20</system:Double>
+    <system:Double x:Key="XLargeFontSize">24</system:Double>
+    <system:Double x:Key="SmallFontSize">12</system:Double>
+    <system:Double x:Key="RegularFontSize">14</system:Double>
+    <system:Double x:Key="SmallerFontSize">10</system:Double>
+    <system:Double x:Key="XXLargeFontSize">30</system:Double>
 
     <system:String x:Key="FontChatIcon">&#xf086;</system:String>
     <system:String x:Key="FontUserIcon">&#xf0c0;</system:String>
