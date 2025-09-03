@@ -45,4 +45,14 @@ namespace Word
             else await element.SlideAndFadeToLeft(FirstLoad ? 0 : 0.3f, keepMargin: false);
         }
     }
+
+    public class AnimateSlideBottom : AnimateBaseProperty<AnimateSlideBottom>
+    {
+        protected override async void DoAnimation(FrameworkElement element, bool value)
+        {
+            if (value) await element.SlideAndFadeFromBottom(FirstLoad ? 0 : 0.3f, keepMargin: false);
+
+            else await element.SlideAndFadeToBottom(FirstLoad ? 0 : 0.3f, keepMargin: false);
+        }
+    }
 }

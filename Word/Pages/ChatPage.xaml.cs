@@ -2,7 +2,7 @@
 
 namespace Word
 {
-    public partial class ChatPage :BasePage<LoginViewModel>
+    public partial class ChatPage : BasePage<MessageListViewModel>
     {
         public ChatPage()
         {

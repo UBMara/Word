@@ -7,8 +7,7 @@
              xmlns:core="clr-namespace:Word.Core.ViewModel;assembly=Word.Core"
              mc:Ignorable="d" d:DesignWidth="300">
     <Border Padding="5" 
-            d:DataContext="{x:Static core:MessageLIDesignViewModel.Instance}"
-            Background="{StaticResource BlueForegroundBrush}">
+            d:DataContext="{x:Static core:MessageLIDesignViewModel.Instance}">
         <Grid>
             <Border VerticalAlignment="Top"
                     HorizontalAlignment="Left"
@@ -29,16 +28,34 @@
                            />
             </Border>
 
-            <Grid Margin="45 0 0 0" HorizontalAlignment="{Binding SentByMe, Converter={}}">
+            <Grid Margin="45 0 45 0" HorizontalAlignment="{Binding SentByMe, Converter={local:SendBYMeToAligmentConverter}}">
+				<Grid.Triggers>
+					<EventTrigger RoutedEvent="MouseEnter">
+						<BeginStoryboard>
+							<Storyboard Storyboard.TargetName="ExtraDetails" Storyboard.TargetProperty="Opacity">
+								<DoubleAnimation To="1" Duration="00:00:00.5" />
+							</Storyboard>
+						</BeginStoryboard>
+					</EventTrigger>
+
+					<EventTrigger RoutedEvent="MouseLeave">
+						<BeginStoryboard>
+							<Storyboard Storyboard.TargetName="ExtraDetails" Storyboard.TargetProperty="Opacity">
+								<DoubleAnimation To="0" Duration="00:00:00.5" />
+							</Storyboard>
+						</BeginStoryboard>
+					</EventTrigger>
+				</Grid.Triggers>
+				
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 
                 <Border CornerRadius="10"
                     Padding="15"
-                    Background="{StaticResource LightForegroundBrush}">
+                    Background="{Binding  SentByMe, Converter={local:SendBYMeToBackgroundConverter}}">
                     <TextBlock VerticalAlignment="Center"
                            TextWrapping="Wrap"
                            FontFamily="{StaticResource LatoRegular}"
@@ -50,11 +67,14 @@
                       Stroke="Black"
                       Panel.ZIndex="1"
                       Margin="15 -1 15 0"
-                      Data="M 0,0 L 10,10 L 20,0 L 0,0" 
+                      Data="M 0,0 L 10,10 L 20,0 L 0,0"
                       StrokeThickness="0"
-                      Fill="{StaticResource LighterBackgroundBrush}" />
+					  HorizontalAlignment="{Binding SentByMe, Converter={local:SendBYMeToAligmentConverter}}"
+                      Fill="{Binding  SentByMe, Converter={local:SendBYMeToBackgroundConverter}}" />
 
                 <StackPanel Grid.Row="2"
+							Name="ExtraDetails"
+							HorizontalAlignment="{Binding SentByMe, Converter={local:SendBYMeToAligmentConverter}, ConverterParameter=True}"
                             Orientation="Horizontal">
                     <TextBlock Text="{Binding MessageSentTime, Converter={local:TimeToDisplayConverter}}"
                            Foreground="{StaticResource LightBackgroundBrush}"

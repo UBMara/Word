@@ -1,10 +1,11 @@
-﻿using System.Windows.Controls;
+﻿using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
 using Word.Core.ViewModel;
 
 namespace Word
 {
-    public class BasePage : Page
+    public class BasePage : UserControl
     {
         public PageAnimation PageLoad { get; set; } = PageAnimation.SlideAndFadeRight;
         public PageAnimation PageUnload { get; set; } = PageAnimation.SlideAndFadeLeft;
@@ -14,10 +15,13 @@ namespace Word
         public bool ShouldAnimateOut { get; set; }
         public BasePage()
         {
-            if (this.PageLoad != PageAnimation.None)
-                this.Visibility = Visibility.Collapsed;
+            if (DesignerProperties.GetIsInDesignMode(this))
+                return;
 
-            this.Loaded += BasePage_Loaded;
+            if (PageLoad != PageAnimation.None)
+                Visibility = Visibility.Collapsed;
+
+            Loaded += BasePage_Loaded;
 
         }
 
@@ -35,7 +39,7 @@ namespace Word
             switch (this.PageLoad)
             {
                 case PageAnimation.SlideAndFadeRight:
-                    await this.SlideAndFadeFromRight(this.SlideSec);
+                    await this.SlideAndFadeFromRight(this.SlideSec, width: (int)Application.Current.MainWindow.Width);
                     break;
             }
         }

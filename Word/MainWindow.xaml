@@ -110,7 +110,7 @@
 
             <local:SideMenuControl Width="300" local:AnimateSlideLeft.Value ="{Binding ApplicationViewModel.SideMenuVisible, 
                                      Source={x:Static local:ViewModelLocator.Instance}}">
-                <local:ChatListItemControl Height="60" VerticalAlignment="Top"/>
+                <local:ChatListItemControl />
             </local:SideMenuControl>
         </Grid>
     </Border>

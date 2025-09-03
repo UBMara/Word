@@ -7,7 +7,7 @@
              xmlns:core="clr-namespace:Word.Core.ViewModel;assembly=Word.Core" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid DataContext="{x:Static core:ChatLIDesignViewModel.Instance}">
+    <Grid VerticalAlignment="Bottom" DataContext="{x:Static core:MessageLIDesignViewModel.Instance}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding Items}">
                 <ItemsControl.ItemTemplate>

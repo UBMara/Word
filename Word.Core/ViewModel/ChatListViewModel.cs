@@ -9,6 +9,6 @@ namespace Word.Core.ViewModel
 { 
     public class ChatListViewModel : BaseViewModel
     {
-        public List<ChatListItemViewModel> Items { get; set; }
+        public List<ChatListItemViewModel>? Items { get; set; }
     }
 }

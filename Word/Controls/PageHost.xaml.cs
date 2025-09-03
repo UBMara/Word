@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
+using Word.Core;
+using Word.Core.ViewModel;
 
 namespace Word
 {
@@ -23,14 +26,23 @@ namespace Word
             oldPageFrame.Content = oldPageContent;
 
             if (oldPageContent is BasePage oldPage)
+            {
                 oldPage.ShouldAnimateOut = true;
 
+                Task.Delay((int)(oldPage.SlideSec * 1000)).ContinueWith((t) => {
+                    Application.Current.Dispatcher.Invoke(() => oldPageFrame.Content = null);
+                });
+            }
+                
             newPageFrame.Content = e.NewValue;
         }
 
         public PageHost()
         {
             InitializeComponent();
+
+            if (DesignerProperties.GetIsInDesignMode(this))
+                NewPage.Content = (BasePage)new ApplicationPageValueConverter().Convert(IoC.Get<ApplicationViewModel>().CurrentPage);
         }
     }
 }

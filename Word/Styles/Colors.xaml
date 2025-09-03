@@ -23,7 +23,13 @@
     <Color x:Key="DarkerForeground">black</Color>
     <SolidColorBrush x:Key="DarkerForegroundBrush" Color="{StaticResource DarkerForeground}" />
 
-    <Color x:Key="LighterBlueForeground">Aqua</Color>
+    <Color x:Key="EvenLighterBlueForeground">Aqua</Color>
+    <SolidColorBrush x:Key="EvenLighterBlueForegroundBrush" Color="{StaticResource EvenLighterBlueForeground}" />
+
+    <Color x:Key="TransparentBlueForeground">#00A2CEE7</Color>
+    <SolidColorBrush x:Key="TransparentBlueForegroundBrush" Color="{StaticResource TransparentBlueForeground}" />
+
+    <Color x:Key="LighterBlueForeground">#A2CEE7</Color>
     <SolidColorBrush x:Key="LighterBlueForegroundBrush" Color="{StaticResource LighterBlueForeground}" />
 
     <Color x:Key="LightBlueForeground">deepskyblue</Color>
@@ -46,5 +52,9 @@
 
     <Color x:Key="GreenForeground">lawngreen</Color>
     <SolidColorBrush x:Key="GreenForegroundBrush" Color="{StaticResource GreenForeground}" />
+
+    <Color x:Key="DarkGreenForeground">#66D457</Color>
+    <SolidColorBrush x:Key="DarkGreenForegroundBrush" Color="{StaticResource DarkGreenForeground}" />
+
 
 </ResourceDictionary>

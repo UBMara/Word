@@ -90,5 +90,36 @@ namespace Word
             Storyboard.SetTargetProperty(animation, new PropertyPath("Opacity"));
             storyboard.Children.Add(animation);
         }
+
+        public static void AddSlideFromBottom(this Storyboard storyboard, float sec, double offset, float deceleration = 0.9f, bool keepMargin = true)
+        {
+            var animation = new ThicknessAnimation
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(sec)),
+                From = new Thickness(0, keepMargin ? offset : 0, 0, -offset),
+                To = new Thickness(0),
+                DecelerationRatio = deceleration
+            };
+
+            Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
+            storyboard.Children.Add(animation);
+
+        }
+
+        public static void AddSlideToBottom(this Storyboard storyboard, float sec, double offset, float deceleration = 0.9f, bool keepMargin = true)
+        {
+            var animation = new ThicknessAnimation
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(sec)),
+                From = new Thickness(0),
+                To = new Thickness(0, keepMargin ? offset : 0, 0, -offset),
+                DecelerationRatio = deceleration
+            };
+
+            Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
+            storyboard.Children.Add(animation);
+
+        }
+
     }
 }
