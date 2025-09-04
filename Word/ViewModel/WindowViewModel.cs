@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using Word.Core.ViewModel;
 
-namespace Word.ViewModel
+namespace Word
 {
     public class WindowViewModel : BaseViewModel
     {

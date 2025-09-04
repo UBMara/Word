@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="Word.VerticalMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Word"
+             xmlns:core="clr-namespace:Word.Core.ViewModel;assembly=Word.Core"
+             mc:Ignorable="d">
+    <ItemsControl d:DataContext="{x:Static core:MenuDesignModel.Instance}"  
+                  ItemsSource="{Binding Items}"
+                  Background="White">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Grid >
+                    <Grid>
+                        <Grid Visibility="{Binding Type, Converter={local:MenuItemTypeVisiblityConverter}, ConverterParameter=Header}">
+                            <Border Height="0.5" Background="{StaticResource DarkForegroundBrush}" />
+
+                            <TextBlock Text="{Binding Text}"
+                                   FontFamily="{StaticResource LatoRegular}"
+                                   FontSize="{StaticResource SmallFontSize}"
+                                   Padding="0 5 10 5"
+                                   HorizontalAlignment="Left"
+                                   Background="{StaticResource LightForegroundBrush}"
+                                   Foreground="{StaticResource DarkForegroundBrush}"/>
+                        </Grid>
+
+                    </Grid>
+                    
+                    
+                    <Border CornerRadius="8" 
+                            Padding="5" 
+                            Background="{StaticResource LighterBackgroundBrush}">
+
+                        <Border.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="{StaticResource BlueForeground}" 
+                                                        Duration="0:0:0" 
+                                                        Storyboard.TargetProperty="Background.Color" />
+                                        <ColorAnimation To="{StaticResource LightForeground}" 
+                                                        Duration="0:0:0" 
+                                                        Storyboard.TargetProperty="Foreground.Color" 
+                                                        Storyboard.TargetName="icon"
+                                                        />
+                                        <ColorAnimation To="{StaticResource LightForeground}" 
+                                                        Duration="0:0:0" 
+                                                        Storyboard.TargetProperty="Foreground.Color" 
+                                                        Storyboard.TargetName="text"
+                                                        />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="{StaticResource LightBackground}" 
+                                                        Duration="0:0:0" 
+                                                        Storyboard.TargetProperty="Background.Color" />
+                                        <ColorAnimation To="{StaticResource GrayForeground}" 
+                                                        Duration="0:0:0" 
+                                                        Storyboard.TargetProperty="Foreground.Color" 
+                                                        Storyboard.TargetName="icon"
+                                                        />
+                                        <ColorAnimation To="{StaticResource DarkForeground}" 
+                                                        Duration="0:0:0" 
+                                                        Storyboard.TargetProperty="Foreground.Color" 
+                                                        Storyboard.TargetName="text"
+                                                        />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Border.Triggers>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Name="icon" Padding="5"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource FontAwesome}"
+                                       Text="{Binding Icon, Converter={local:IconToFontAwesomeConverter}}"
+                                       Foreground="{StaticResource GrayForegroundBrush}"/>
+                            
+                            <TextBlock Name="text" Padding="5"
+                                       Grid.Column="1"
+                                       Margin="5 0 5 0"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding Text}"
+                                       FontFamily="{StaticResource LatoRegular}"
+                                       Foreground="{StaticResource DarkForegroundBrush}"/>
+                            
+                        </Grid>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</UserControl>

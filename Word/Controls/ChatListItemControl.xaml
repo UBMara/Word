@@ -12,7 +12,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ContentControl}">
-                        <Border x:Name="background" Background="{StaticResource GrayForegroundBrush}">
+                        <Border x:Name="background" Background="{StaticResource LightForegroundBrush}">
                         <Grid x:Name="container" Background="Transparent">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -64,7 +64,7 @@
                                     <Storyboard>
                                         <ColorAnimation To="{StaticResource LightBackground}" 
                                                         Duration="0:0:0.3"
-                                                        Storyboard.TargetName="border"
+                                                        Storyboard.TargetName="container"
                                                         Storyboard.TargetProperty="Background.Color"/>
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -74,7 +74,7 @@
                                     <Storyboard>
                                         <ColorAnimation To="Transparent" 
                                                         Duration="0:0:0.3"
-                                                        Storyboard.TargetName="border"
+                                                        Storyboard.TargetName="container"
                                                         Storyboard.TargetProperty="Background.Color"/>
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -91,5 +91,5 @@
         </Style>
     </UserControl.Resources>
 
-    <ContentControl d:DataContext="{x:Static core:ChatLIDesignViewModel.Instance}" />
+    <ContentControl d:DataContext="{x:Static core:ChatLIDesignViewModel.Instance}" Style="{StaticResource ContentStyle}" />
 </UserControl>

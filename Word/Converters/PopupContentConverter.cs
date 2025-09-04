@@ -1,14 +1,18 @@
 ﻿using System.Globalization;
-using System.Windows.Media;
+using System.Windows;
 using Word.Converters;
+using Word.Core.ViewModel;
 
 namespace Word
 {
-    class StringtoBrushConverter : BaseConverter<StringtoBrushConverter>
+    class PopupContentConverter : BaseConverter<PopupContentConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (SolidColorBrush)(new BrushConverter().ConvertFrom($"#{value}"));
+            if (value is ChatAttachmentPopupMenuViewModel basePopup)
+                return new VerticalMenu { DataContext = basePopup.Content };
+
+            return null;
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

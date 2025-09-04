@@ -12,18 +12,38 @@ namespace Word.Core.ViewModel
     {
         public List<MessageListItemViewModel>? Items { get; set; }
         public ICommand? AttachmentButtonCommand { get; set; }
+        public ICommand? PopUpClickawayCommand { get; set; }
+        public ICommand SendCommand { get; set; }
         public bool AttachmentMenuVisible { get; set; }
-        //public ChatAttachmentPopupMenuViewModel AttachmentMenu { get; set; }
+        public ChatAttachmentPopupMenuViewModel AttachmentMenu { get; set; }
+        public bool AnyPopupVisible => AttachmentMenuVisible;
 
         public MessageListViewModel()
         {
             AttachmentButtonCommand = new RelayCommand(AttachmentButton);
-            //AttachmentMenu = new ChatAttachmentPopupMenuViewModel();
+            PopUpClickawayCommand = new RelayCommand(PopUpClickaway);
+            SendCommand = new RelayCommand(Send);
+            AttachmentMenu = new ChatAttachmentPopupMenuViewModel();
+        }
+
+        public void PopUpClickaway()
+        {
+            AttachmentMenuVisible = false;
         }
 
         private void AttachmentButton()
         {
             AttachmentMenuVisible ^= true;
+        }
+
+        public void Send()
+        {
+            IoC.UI.ShowMessage(new MessageBoxDialogViewModel
+            {
+                //Title = "Send Message",
+                Message = "Thank you for writing a nice message :)",
+                OkText = "OK"
+            });
         }
     }
 }

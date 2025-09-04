@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
-using Word.Core.ViewModel;
 
-namespace Word.Core
+namespace Word.Core.ViewModel
 {
     public class MessageLDesignViewModel : MessageListViewModel
     {

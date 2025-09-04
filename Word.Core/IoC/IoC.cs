@@ -6,6 +6,7 @@ namespace Word.Core
     public static class IoC
     {
         public static IKernel Kernel { get; private set; } = new StandardKernel();
+        public static IUIManager UI => IoC.Get<IUIManager>();
 
         public static T Get<T>()
         {

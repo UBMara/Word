@@ -8,7 +8,7 @@ namespace Word
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ViewModel.WindowViewModel(this);
+            DataContext = new WindowViewModel(this);
         }
     }
 }

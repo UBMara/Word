@@ -9,10 +9,16 @@ namespace Word
         {
             base.OnStartup(e);
 
-            IoC.SetUp();
+            ApplicationSetup();
 
             Current.MainWindow = new MainWindow();
             Current.MainWindow.Show();
+        }
+
+        public void ApplicationSetup()
+        {
+            IoC.SetUp();
+            IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());
         }
     }
 

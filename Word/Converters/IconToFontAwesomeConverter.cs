@@ -1,14 +1,15 @@
 ﻿using System.Globalization;
-using System.Windows.Media;
+using System.Windows;
 using Word.Converters;
+using Word.Core;
 
 namespace Word
 {
-    class StringtoBrushConverter : BaseConverter<StringtoBrushConverter>
+    class IconToFontAwesomeConverter : BaseConverter<IconToFontAwesomeConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (SolidColorBrush)(new BrushConverter().ConvertFrom($"#{value}"));
+            return ((IconType)value).ToFontAwesome();
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

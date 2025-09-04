@@ -1,4 +1,4 @@
-﻿<Window x:Class="Word.MainWindow"
+﻿<Window x:Class="Word.DialogWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,14 +8,14 @@
         xmlns:custom="clr-namespace:Word.Converters" 
         Icon="pack://application:,,,/Images/logo-small.png"
         WindowStyle="None"
-        x:Name="AppWindow"
+        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         mc:Ignorable="d"
         MinWidth="{Binding MinWidth}" MinHeight="{Binding MinHeight}"
-        Title="Welcome" Height="600" Width="900">
+        Title="{Binding Title}" Height="600" Width="900">
     <Window.Resources>
-        <Style TargetType="{x:Type local:MainWindow}">
+        <Style TargetType="{x:Type local:DialogWindow}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
@@ -53,18 +53,14 @@
                                             <Image Source="pack://application:,,,/Images/logo-small.png" />
                                         </Button>
 
-                                        <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
-                                            <StackPanel>
-                                                <TextBlock FontFamily="{StaticResource LatoBold}"
-                                                           FontSize="{StaticResource LargeFontSize}"
-                                                           Margin="0 0 0 -5">
-                                                    <Run Text="W" Foreground="{StaticResource YellowForegroundBrush}"/><Run Text="O" Foreground="{StaticResource BlueForegroundBrush}"/><Run Text="R" Foreground="{StaticResource RedForegroundBrush}"/><Run Text="D" Foreground="{StaticResource GreenForegroundBrush}"/>
-                                                </TextBlock>
-                                                <TextBlock Text="by fasetto" 
-                                                           Foreground="{StaticResource LightBackgroundBrush}"
-                                                           TextAlignment="Center"/>
-                                            </StackPanel>
-                                        </Viewbox>
+                                        <TextBlock Grid.Column="1" 
+                                                   Text="{Binding Title}"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="{StaticResource LargeFontSize}"
+                                                   FontFamily="{StaticResource LatoRegular}"
+                                                   Foreground="{StaticResource DarkerForegroundBrush}"
+                                                   />
 
                                         <StackPanel Grid.Column="2" Orientation="Horizontal">
                                             <Button Command="{Binding MinCommand}" Style="{StaticResource WindowControlButton}" Content="_" />
@@ -84,6 +80,7 @@
             </Setter>
         </Style>
     </Window.Resources>
+    
     <WindowChrome.WindowChrome>
         <WindowChrome ResizeBorderThickness="{Binding ResizeBorderThick}" 
                       CaptionHeight="{Binding TitleHeight}"
@@ -91,26 +88,7 @@
                       GlassFrameThickness="0"/>
     </WindowChrome.WindowChrome>
 
-    <Border Background="{StaticResource BlueForegroundBrush}">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.Background>
-                <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500" ImageSource="/Images/emoji-background.png" />
-            </Grid.Background>
-
-            <local:PageHost Grid.Column="1"
-                  local:PageHost.CurrentPage="{Binding ApplicationViewModel.CurrentPage, 
-                                 Source={x:Static local:ViewModelLocator.Instance}, 
-                                 Converter={local:ApplicationPageValueConverter}}"/>
-
-            <local:SideMenuControl Width="300" local:AnimateSlideLeft.Value ="{Binding ApplicationViewModel.SideMenuVisible, 
-                                     Source={x:Static local:ViewModelLocator.Instance}}">
-                <local:ChatListControl />
-            </local:SideMenuControl>
-        </Grid>
+    <Border Padding="10" Background="{StaticResource LighterBackgroundBrush}">
+        <ContentControl Content="{Binding Content}" />
     </Border>
 </Window>

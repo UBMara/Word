@@ -17,6 +17,16 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <Border Background="Transparent" 
+                Grid.RowSpan="2"
+                Panel.ZIndex="1"
+                Visibility="{Binding AnyPopupVisible, Converter={local:BooleanToVisiblityConverter}, ConverterParameter=True}">
+            
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding PopUpClickawayCommand}"/>
+            </Border.InputBindings>
+        </Border>
+
         <Grid Height="50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -38,12 +48,13 @@
             
         </Grid>
 
-        <local:ChatMessageListControl />
+        <local:ChatMessageListControl Grid.Row="1" />
 
         <local:BubbleContent Grid.Row="1" 
+                             DataContext="{Binding AttachmentMenu}"
                              VerticalAlignment="Bottom" 
                              HorizontalAlignment="Left"
-                             local:AnimateSlideBottom.Value="{Binding AttachmentMenuVisible}"/>
+                             local:AnimateSlideBottom.Value="{Binding ViewModel.AttachmentMenuVisible, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ChatPage}}}"/>
 
         <Grid Grid.Row="2" 
               MinHeight="50"
@@ -84,6 +95,7 @@
 
                 <Button Content="Send"
                         Padding="8"
+                        Command="{Binding SendCommand}"
                         Background="{StaticResource DarkGreenForegroundBrush}"
                         Foreground="{StaticResource DarkerForegroundBrush}"/>
             </StackPanel>

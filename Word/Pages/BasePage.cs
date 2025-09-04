@@ -70,7 +70,7 @@ namespace Word
                 if (_viewModel == value) return;
 
                 _viewModel = value;
-                this.DataContext = _viewModel;
+                DataContext = _viewModel;
             }
         }
 

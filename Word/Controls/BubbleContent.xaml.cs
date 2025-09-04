@@ -4,6 +4,7 @@ namespace Word
 {
     public partial class BubbleContent : UserControl
     {
+
         public BubbleContent()
         {
             InitializeComponent();

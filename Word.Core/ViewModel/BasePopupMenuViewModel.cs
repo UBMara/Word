@@ -12,6 +12,8 @@ namespace Word.Core.ViewModel
         public string? BubbleBackground { get; set; }
         public ElementHorizontalAlignment ArrowAlignment { get; set; }
 
+        public BaseViewModel Content { get; set; }
+
         public BasePopupMenuViewModel()
         {
             BubbleBackground = "ffffff";
