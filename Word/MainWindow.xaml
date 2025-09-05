@@ -12,105 +12,116 @@
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         mc:Ignorable="d"
-        MinWidth="{Binding MinWidth}" MinHeight="{Binding MinHeight}"
-        Title="Welcome" Height="600" Width="900">
-    <Window.Resources>
-        <Style TargetType="{x:Type local:MainWindow}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Window}">
-                        <Border Padding="{Binding OuterMarginSizeThick, FallbackValue=10}">
-                            <Grid>
-                                <Border x:Name="Container" 
-                                        Background="{StaticResource LightBackgroundBrush}" 
-                                        CornerRadius="{Binding CornerRadius, FallbackValue=10}"/>
-
-                                <Border CornerRadius="{Binding CornerRadius, FallbackValue=6}" 
-                                        Background="{StaticResource LightForegroundBrush}">
-                                    <Border.Effect>
-                                        <DropShadowEffect ShadowDepth="0" Opacity="0.2"/>
-                                    </Border.Effect>
-                                </Border>
-
-                                <Grid>
-                                    <Grid.OpacityMask>
-                                        <VisualBrush Visual="{Binding ElementName=Container}"/>
-                                    </Grid.OpacityMask>
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="{Binding TitleHeightLength, FallbackValue=42}" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-
-                                    <Grid Grid.Row="0" Panel.ZIndex="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Button Style="{StaticResource IconButton}" Command="{Binding MenuCommand}">
-                                            <Image Source="pack://application:,,,/Images/logo-small.png" />
-                                        </Button>
-
-                                        <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
-                                            <StackPanel>
-                                                <TextBlock FontFamily="{StaticResource LatoBold}"
-                                                           FontSize="{StaticResource LargeFontSize}"
-                                                           Margin="0 0 0 -5">
-                                                    <Run Text="W" Foreground="{StaticResource YellowForegroundBrush}"/><Run Text="O" Foreground="{StaticResource BlueForegroundBrush}"/><Run Text="R" Foreground="{StaticResource RedForegroundBrush}"/><Run Text="D" Foreground="{StaticResource GreenForegroundBrush}"/>
-                                                </TextBlock>
-                                                <TextBlock Text="by fasetto" 
-                                                           Foreground="{StaticResource LightBackgroundBrush}"
-                                                           TextAlignment="Center"/>
-                                            </StackPanel>
-                                        </Viewbox>
-
-                                        <StackPanel Grid.Column="2" Orientation="Horizontal">
-                                            <Button Command="{Binding MinCommand}" Style="{StaticResource WindowControlButton}" Content="_" />
-                                            <Button Command="{Binding MaxCommand}" Style="{StaticResource WindowControlButton}" Content="[ ]" />
-                                            <Button Command="{Binding CloseCommand}" Style="{StaticResource WindowCloseButton}" Content="X" />
-                                        </StackPanel>
-                                    </Grid>
-
-                                    <Border Grid.Row="1" Padding="{Binding InnerPadding}" ClipToBounds="True">
-                                        <ContentPresenter Content="{TemplateBinding Content}" />
-                                    </Border>
-                                </Grid>
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
+        Deactivated="AppWindow_Deactivated"
+        Activated="AppWindow_Activated"
+        MinWidth="{Binding MinWidth}"
+        MinHeight="{Binding MinHeight}"
+        Title="Welcome"
+        Height="600"
+        Width="900">
     <WindowChrome.WindowChrome>
-        <WindowChrome ResizeBorderThickness="{Binding ResizeBorderThick}" 
+            <WindowChrome ResizeBorderThickness="{Binding ResizeBorderThick}" 
                       CaptionHeight="{Binding TitleHeight}"
                       CornerRadius="0"
                       GlassFrameThickness="0"/>
-    </WindowChrome.WindowChrome>
+        </WindowChrome.WindowChrome>
 
-    <Border Background="{StaticResource BlueForegroundBrush}">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+    <Grid>
+        <Border Padding="{Binding OuterMarginSizeThick, FallbackValue=10}">
+            <Grid>
+                <Border x:Name="Container" 
+                    Background="{StaticResource LightBackgroundBrush}" 
+                    CornerRadius="{Binding CornerRadius, FallbackValue=10}"/>
 
-            <Grid.Background>
-                <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500" ImageSource="/Images/emoji-background.png" />
-            </Grid.Background>
+                <Border CornerRadius="{Binding CornerRadius, FallbackValue=6}" 
+                    Background="{StaticResource LightForegroundBrush}">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="0" Opacity="0.2"/>
+                    </Border.Effect>
+                </Border>
 
-            <local:PageHost Grid.Column="1"
+                <Grid>
+                    <Grid.OpacityMask>
+                        <VisualBrush Visual="{Binding ElementName=Container}"/>
+                    </Grid.OpacityMask>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding TitleHeightLength, FallbackValue=42}" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Panel.ZIndex="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Style="{StaticResource IconButton}" Command="{Binding MenuCommand}">
+                            <Image Source="pack://application:,,,/Images/logo-small.png" />
+                        </Button>
+
+                        <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
+                            <StackPanel>
+                                <TextBlock FontFamily="{StaticResource LatoBold}"
+                                       FontSize="{StaticResource LargeFontSize}"
+                                       Margin="0 0 0 -5">
+                                <Run Text="W" Foreground="{StaticResource YellowForegroundBrush}"/>
+                                <Run Text="O" Foreground="{StaticResource BlueForegroundBrush}"/>
+                                <Run Text="R" Foreground="{StaticResource RedForegroundBrush}"/>
+                                <Run Text="D" Foreground="{StaticResource GreenForegroundBrush}"/>
+                                </TextBlock>
+                                <TextBlock Text="by fasetto" 
+                                       Foreground="{StaticResource LightBackgroundBrush}"
+                                       TextAlignment="Center"/>
+                            </StackPanel>
+                        </Viewbox>
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                            <Button Command="{Binding MinCommand}" Style="{StaticResource WindowControlButton}" Content="_" />
+                            <Button Command="{Binding MaxCommand}" Style="{StaticResource WindowControlButton}" Content="[ ]" />
+                            <Button Command="{Binding CloseCommand}" Style="{StaticResource WindowCloseButton}" Content="X" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Border Grid.Row="1" Padding="{Binding InnerPadding}" ClipToBounds="True">
+                        <ContentPresenter Content="{Binding Content, RelativeSource={RelativeSource AncestorType=Window}}" />
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border Background="{StaticResource BlueForegroundBrush}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.Background>
+                    <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500" ImageSource="/Images/emoji-background.png" />
+                </Grid.Background>
+
+                <local:SettingsControl Grid.ColumnSpan="2" 
+                                   local:AnimateSlideBottomMargin.Value="{Binding ApplicationViewModel.SettingsMenuVisible, Source={x:Static local:ViewModelLocator.Instance}}"
+                                   Panel.ZIndex="9" />
+
+                <Border Grid.RowSpan="3"
+                    Panel.ZIndex="10"
+                    Opacity="0.3">
+                    <Border Background="{StaticResource DarkerForegroundBrush}" 
+                        local:AnimateFadeInOut.Value="{Binding DimmOverlayVisible}"/>
+                </Border>
+
+                <local:PageHost Grid.Column="1"
                   local:PageHost.CurrentPage="{Binding ApplicationViewModel.CurrentPage, 
                                  Source={x:Static local:ViewModelLocator.Instance}, 
                                  Converter={local:ApplicationPageValueConverter}}"/>
 
-            <local:SideMenuControl Width="300" local:AnimateSlideLeft.Value ="{Binding ApplicationViewModel.SideMenuVisible, 
+                <local:SideMenuControl Width="300" local:AnimateSlideLeft.Value="{Binding ApplicationViewModel.SideMenuVisible, 
                                      Source={x:Static local:ViewModelLocator.Instance}}">
-                <local:ChatListControl />
-            </local:SideMenuControl>
-        </Grid>
-    </Border>
+                    <local:ChatListControl />
+                </local:SideMenuControl>
+            </Grid>
+        </Border>
+    </Grid>
 </Window>

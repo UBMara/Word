@@ -40,7 +40,7 @@ namespace Word.Core.ViewModel
         {
             IoC.UI.ShowMessage(new MessageBoxDialogViewModel
             {
-                //Title = "Send Message",
+                Title = "Send Message",
                 Message = "Thank you for writing a nice message :)",
                 OkText = "OK"
             });

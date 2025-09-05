@@ -13,7 +13,7 @@ namespace Word
         {
             switch ((string)value)
             {
-                case nameof(ApplicationPage): return IoC.Get<ApplicationViewModel>();
+                case nameof(ApplicationPage): return IoC.Application;
 
                 default:
                     Debugger.Break();

@@ -23,7 +23,7 @@ namespace Word.Core.ViewModel
 
         public async Task Register()
         {
-            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Register);
+            IoC.Application.GoToPage(ApplicationPage.Register);
 
 
             await Task.Delay(1);
@@ -34,7 +34,7 @@ namespace Word.Core.ViewModel
             await RunCommand(() => this.LoginIsRunning, async () =>
             {
                 await Task.Delay(1000);
-                IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Chat);
+                IoC.Application.GoToPage(ApplicationPage.Chat);
 
             });
         }

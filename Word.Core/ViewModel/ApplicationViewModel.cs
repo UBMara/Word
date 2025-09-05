@@ -15,6 +15,8 @@
 
         public bool SideMenuVisible { get; set; } = false;
 
+        public bool SettingsMenuVisible { get; set; }
+
         public void GoToPage(ApplicationPage page)
         {
             CurrentPage = page;

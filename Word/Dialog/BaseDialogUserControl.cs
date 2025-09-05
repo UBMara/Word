@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Runtime.Serialization.DataContracts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Word.Core.ViewModel;
 
-namespace Word.Core
+namespace Word
 {
-    public class BaseDialogUserControl
+    public class BaseDialogUserControl : UserControl
     {
         private DialogWindow _DialogWindow;
 
@@ -25,9 +26,13 @@ namespace Word.Core
 
         public BaseDialogUserControl()
         {
-            _DialogWindow = new DialogWindow();
-            _DialogWindow.ViewModel = new DialogWindowViewModel(_DialogWindow);
+            if (!DesignerProperties.GetIsInDesignMode(this))
+            {
+                _DialogWindow = new DialogWindow();
+                _DialogWindow.ViewModel = new DialogWindowViewModel(_DialogWindow);
 
+                CloseCommand = new RelayCommand(() => _DialogWindow.Close());
+            }
         }
 
         public Task ShowDialog<T>(T viewModel)
@@ -39,12 +44,14 @@ namespace Word.Core
             {
                 try
                 {
-                    _DialogWindow.ViewModel.MinWidth = MinHeight;
-                    _DialogWindow.ViewModel.MinHeight = MinWidth;
+                    _DialogWindow.ViewModel.MinWidth = MinWidth;
+                    _DialogWindow.ViewModel.MinHeight = MinHeight;
                     _DialogWindow.ViewModel.TitleHeight = TitleHeight;
                     _DialogWindow.ViewModel.Title = Title;
 
-                    //DataContext = viewModel;
+                    _DialogWindow.ViewModel.Content = this;
+
+                    DataContext = viewModel;
 
                     _DialogWindow.ShowDialog();
                 }

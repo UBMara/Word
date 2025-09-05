@@ -10,5 +10,15 @@ namespace Word
             InitializeComponent();
             DataContext = new WindowViewModel(this);
         }
+
+        private void AppWindow_Deactivated(object sender, EventArgs e)
+        {
+            (DataContext as WindowViewModel).DimmOverlayVisible = true;
+        }
+
+        private void AppWindow_Activated(object sender, EventArgs e)
+        {
+            (DataContext as WindowViewModel).DimmOverlayVisible = false;
+        }
     }
 }

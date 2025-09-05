@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
 using Word.Core.ViewModel;
 
 namespace Word
 {
+    [ContentProperty(nameof(Content))]
     public class BasePage : UserControl
     {
         public PageAnimation PageLoad { get; set; } = PageAnimation.SlideAndFadeRight;

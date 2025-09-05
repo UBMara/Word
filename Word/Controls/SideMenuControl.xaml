@@ -30,6 +30,7 @@
 
                         <Button Grid.Column="2"
                             Foreground="{StaticResource DarkBlueForegroundBrush}" 
+                            Command="{Binding SettingsViewModel.OpenCommand, Source={x:Static local:ViewModelLocator.Instance}}"
                             Style="{StaticResource ChatIconButton}" 
                             Content="{StaticResource FontCogIcon}"/>
                     </Grid>

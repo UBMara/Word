@@ -15,6 +15,7 @@ namespace Word
 
         public double MinWidth { get; set; } = 800;
         public double MinHeight { get; set; } = 400;
+        public bool DimmOverlayVisible { get; set; }
 
         public ICommand MinCommand { get; set; }
         public ICommand MaxCommand { get; set; }

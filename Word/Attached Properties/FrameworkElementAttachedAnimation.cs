@@ -6,20 +6,26 @@ namespace Word
         where Parent : BaseAttachedProperty<Parent, bool>, new()
     {
         public bool FirstLoad { get; set; } = true;
+        protected bool FirstFire = true;
 
         public override void OnValueUpdated(DependencyObject d, object value)
         {
             if(!(d is FrameworkElement element)) return;
 
-            if(d.GetValue(ValueProperty) == value && !FirstLoad) return;
+            if ((bool)d.GetValue(ValueProperty) == (bool)value && !FirstFire) return;
 
-            if(FirstLoad)
+            FirstFire = false;
+
+            if (FirstLoad)
             {
+                if (!(bool)value)
+                    element.Visibility = Visibility.Hidden;
+
                 RoutedEventHandler onLoaded = null;
-                onLoaded = (ss, ee) =>
+                onLoaded = async (ss, ee) =>
                 {
                     element.Loaded -= onLoaded;
-
+                    await Task.Delay(5);
                     DoAnimation(element, (bool)value);
                     FirstLoad = false;
                 };
@@ -53,6 +59,26 @@ namespace Word
             if (value) await element.SlideAndFadeFromBottom(FirstLoad ? 0 : 0.3f, keepMargin: false);
 
             else await element.SlideAndFadeToBottom(FirstLoad ? 0 : 0.3f, keepMargin: false);
+        }
+    }
+
+    public class AnimateSlideBottomMargin : AnimateBaseProperty<AnimateSlideBottomMargin>
+    {
+        protected override async void DoAnimation(FrameworkElement element, bool value)
+        {
+            if (value) await element.SlideAndFadeFromBottom(FirstLoad ? 0 : 0.3f, keepMargin: true);
+
+            else await element.SlideAndFadeToBottom(FirstLoad ? 0 : 0.3f, keepMargin: true);
+        }
+    }
+
+    public class AnimateFadeInOut : AnimateBaseProperty<AnimateFadeInOut>
+    {
+        protected override async void DoAnimation(FrameworkElement element, bool value)
+        {
+            if (value) await element.FadeIn(FirstLoad ? 0 : 0.3f);
+
+            else await element.FadeOut(FirstLoad ? 0 : 0.3f);
         }
     }
 }

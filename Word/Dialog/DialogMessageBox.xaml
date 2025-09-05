@@ -1,0 +1,18 @@
+﻿<local:BaseDialogUserControl x:Class="Word.DialogMessageBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:core="clr-namespace:Word.Core.ViewModel;assembly=Word.Core"
+             xmlns:local="clr-namespace:Word"
+             mc:Ignorable="d" >
+    <StackPanel d:DataContext="{x:Static core:MessageBoxDisignModel.Instance}" Background="{StaticResource LighterBackgroundBrush}">
+        <TextBlock Text="{Binding Text}" 
+                   Padding="5"
+                   Foreground="{StaticResource GrayForegroundBrush}" />
+        <Button Content="{Binding OkText}" 
+                HorizontalAlignment="Center"
+                Command="{Binding CloseCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:BaseDialogUserControl}}}"
+                FontSize="{StaticResource RegularFontSize}"/>
+    </StackPanel>
+</local:BaseDialogUserControl>

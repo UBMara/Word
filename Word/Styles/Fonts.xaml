@@ -37,4 +37,5 @@
     <system:String x:Key="FontEllipsesIcon">&#xf142;</system:String>
     <system:String x:Key="FontPaperClipIcon">&#xf0c6;</system:String>
     <system:String x:Key="FontEmojiIcon">&#xf118;</system:String>
+    <system:String x:Key="FontLeftArrowIcon">&#xf060;</system:String>
 </ResourceDictionary>
