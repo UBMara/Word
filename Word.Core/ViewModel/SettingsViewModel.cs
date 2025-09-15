@@ -8,7 +8,12 @@ namespace Word.Core.ViewModel
         public ICommand OpenCommand { get; set; }
         public ICommand CloseCommand { get; set; }
 
-     public SettingsViewModel()
+        public TextEntryViewModel Name { get; set; }
+        public TextEntryViewModel Username { get; set; }
+        public TextEntryViewModel Password { get; set; }
+        public TextEntryViewModel Email { get; set; }
+
+        public SettingsViewModel()
         {
             OpenCommand = new RelayCommand(Open);
             CloseCommand = new RelayCommand(Close);

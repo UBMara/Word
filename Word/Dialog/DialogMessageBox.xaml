@@ -7,9 +7,9 @@
              xmlns:local="clr-namespace:Word"
              mc:Ignorable="d" >
     <StackPanel d:DataContext="{x:Static core:MessageBoxDisignModel.Instance}" Background="{StaticResource LighterBackgroundBrush}">
-        <TextBlock Text="{Binding Text}" 
+        <TextBlock Text="{Binding Message}" 
                    Padding="5"
-                   Foreground="{StaticResource GrayForegroundBrush}" />
+                   Foreground="{StaticResource DarkForegroundBrush}" />
         <Button Content="{Binding OkText}" 
                 HorizontalAlignment="Center"
                 Command="{Binding CloseCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:BaseDialogUserControl}}}"

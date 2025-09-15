@@ -10,7 +10,7 @@ namespace Word
 
         public override void OnValueUpdated(DependencyObject d, object value)
         {
-            if(!(d is FrameworkElement element)) return;
+            if (!(d is FrameworkElement element)) return;
 
             if ((bool)d.GetValue(ValueProperty) == (bool)value && !FirstFire) return;
 
@@ -31,7 +31,7 @@ namespace Word
                 };
 
                 element.Loaded += onLoaded;
-                
+
             }
             else
             {

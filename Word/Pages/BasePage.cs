@@ -13,7 +13,7 @@ namespace Word
         public PageAnimation PageUnload { get; set; } = PageAnimation.SlideAndFadeLeft;
 
         public float SlideSec { get; set; } = 0.8f;
-        
+
         public bool ShouldAnimateOut { get; set; }
         public BasePage()
         {

@@ -47,7 +47,11 @@ namespace Word
                     _DialogWindow.ViewModel.MinWidth = MinWidth;
                     _DialogWindow.ViewModel.MinHeight = MinHeight;
                     _DialogWindow.ViewModel.TitleHeight = TitleHeight;
-                    _DialogWindow.ViewModel.Title = Title;
+
+                    if (viewModel is BaseDialogViewModel dialogViewModel && !string.IsNullOrEmpty(dialogViewModel.Title))
+                        _DialogWindow.ViewModel.Title = dialogViewModel.Title;
+                    else
+                        _DialogWindow.ViewModel.Title = Title;
 
                     _DialogWindow.ViewModel.Content = this;
 

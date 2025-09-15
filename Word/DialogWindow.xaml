@@ -8,12 +8,13 @@
         xmlns:custom="clr-namespace:Word.Converters" 
         Icon="pack://application:,,,/Images/logo-small.png"
         WindowStyle="None"
+        SizeToContent="WidthAndHeight"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         mc:Ignorable="d"
         MinWidth="{Binding MinWidth}" MinHeight="{Binding MinHeight}"
-        Title="{Binding Title}" Height="600" Width="900">
+        Title="{Binding Title}">
     <Window.Resources>
         <Style TargetType="{x:Type local:DialogWindow}">
             <Setter Property="Template">
