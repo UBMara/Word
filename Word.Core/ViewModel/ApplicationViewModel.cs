@@ -13,13 +13,18 @@
             }
         }
 
+        public BaseViewModel? CurrentPageViewModel { get; set; }
+
         public bool SideMenuVisible { get; set; } = false;
 
         public bool SettingsMenuVisible { get; set; }
 
-        public void GoToPage(ApplicationPage page)
+        public void GoToPage(ApplicationPage page, BaseViewModel viewModel = null)
         {
+            SettingsMenuVisible = false;
+            CurrentPageViewModel = viewModel;
             CurrentPage = page;
+            OnPropertyChanged(nameof(CurrentPage));
             SideMenuVisible = page == ApplicationPage.Chat;
 
         }

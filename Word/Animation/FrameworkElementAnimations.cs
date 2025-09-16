@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Media3D;
 using System.Xml.Linq;
@@ -7,110 +8,86 @@ namespace Word
 {
     public static class FrameworkElementAnimations
     {
-        public static async Task SlideAndFadeFromRight(this FrameworkElement elem, float sec = 0.3f, bool keepMargin = true, int width = 0)
+        public static async Task SlideAndFadeIn(this FrameworkElement element, AnimationSlideInDirection direction, bool firstLoad, float seconds = 0.3f, bool keepMargin = true, int size = 0)
         {
             var sb = new Storyboard();
-            sb.AddSlideRight(sec, width == 0 ? elem.ActualWidth : width, keepMargin: keepMargin);
-            sb.AddFadeIn(sec);
-            sb.Begin(elem);
 
-            if (sec != 0)
-                elem.Visibility = Visibility.Visible;
+            switch (direction)
+            {
+                case AnimationSlideInDirection.Left:
+                    sb.AddSlideFromLeft(seconds, size == 0 ? element.ActualWidth : size, keepMargin: keepMargin);
+                    break;
+                case AnimationSlideInDirection.Right:
+                    sb.AddSlideFromRight(seconds, size == 0 ? element.ActualWidth : size, keepMargin: keepMargin);
+                    break;
+                case AnimationSlideInDirection.Top:
+                    sb.AddSlideFromTop(seconds, size == 0 ? element.ActualHeight : size, keepMargin: keepMargin);
+                    break;
+                case AnimationSlideInDirection.Bottom:
+                    sb.AddSlideFromBottom(seconds, size == 0 ? element.ActualHeight : size, keepMargin: keepMargin);
+                    break;
+            }
+            
+            sb.AddFadeIn(seconds);
+            sb.Begin(element);
 
-            await Task.Delay((int)(sec * 1000));
+            if (seconds != 0 || firstLoad)
+                element.Visibility = Visibility.Visible;
+            await Task.Delay((int)(seconds * 1000));
         }
 
-        public static async Task SlideAndFadeFromLeft(this FrameworkElement elem, float sec = 0.3f, bool keepMargin = true, int width = 0)
+        public static async Task SlideAndFadeOut(this FrameworkElement element, AnimationSlideInDirection direction, float seconds = 0.3f, bool keepMargin = true, int size = 0)
         {
             var sb = new Storyboard();
-            sb.AddSlideRight(sec, width == 0 ? elem.ActualWidth : width, keepMargin: keepMargin);
-            sb.AddFadeIn(sec);
-            sb.Begin(elem);
+            switch (direction)
+            {
+                case AnimationSlideInDirection.Left:
+                    sb.AddSlideToLeft(seconds, size == 0 ? element.ActualWidth : size, keepMargin: keepMargin);
+                    break;
+                case AnimationSlideInDirection.Right:
+                    sb.AddSlideToRight(seconds, size == 0 ? element.ActualWidth : size, keepMargin: keepMargin);
+                    break;
+                case AnimationSlideInDirection.Top:
+                    sb.AddSlideToTop(seconds, size == 0 ? element.ActualHeight : size, keepMargin: keepMargin);
+                    break;
+                case AnimationSlideInDirection.Bottom:
+                    sb.AddSlideToBottom(seconds, size == 0 ? element.ActualHeight : size, keepMargin: keepMargin);
+                    break;
+            }
 
-            if (sec != 0)
-                elem.Visibility = Visibility.Visible;
+            sb.AddFadeOut(seconds);
+            sb.Begin(element);
 
-            await Task.Delay((int)(sec * 1000));
+            if (seconds != 0)
+                element.Visibility = Visibility.Visible;
+
+            await Task.Delay((int)(seconds * 1000));
+            element.Visibility = Visibility.Hidden;
         }
 
-        public static async Task SlideAndFadeToLeft(this FrameworkElement elem, float sec = 0.3f, bool keepMargin = true, int width = 0)
+        public static async Task FadeIn(this FrameworkElement element, bool firstLoad, float seconds = 0.3f)
         {
             var sb = new Storyboard();
-            sb.AddSlideLeft(sec, width == 0 ? elem.ActualWidth : width, keepMargin: keepMargin);
-            sb.AddFadeOut(sec);
-            sb.Begin(elem);
+            sb.AddFadeIn(seconds);
+            sb.Begin(element);
 
-            if (sec != 0)
-                elem.Visibility = Visibility.Visible;
+            if (seconds != 0 || firstLoad)
+                element.Visibility = Visibility.Visible;
 
-            await Task.Delay((int)(sec * 1000));
-            elem.Visibility = Visibility.Hidden;
+            await Task.Delay((int)(seconds * 1000));
         }
 
-        public static async Task SlideAndFadeToRight(this FrameworkElement elem, float sec = 0.3f, bool keepMargin = true, int width = 0)
+        public static async Task FadeOut(this FrameworkElement element, float seconds = 0.3f)
         {
             var sb = new Storyboard();
-            sb.AddSlideToRight(sec, width == 0 ? elem.ActualWidth : width, keepMargin: keepMargin);
-            sb.AddFadeOut(sec);
-            sb.Begin(elem);
+            sb.AddFadeOut(seconds);
+            sb.Begin(element);
 
-            if (sec != 0)
-                elem.Visibility = Visibility.Visible;
+            if (seconds != 0)
+                element.Visibility = Visibility.Visible;
 
-            await Task.Delay((int)(sec * 1000));
-            elem.Visibility = Visibility.Hidden;
-        }
-
-        public static async Task SlideAndFadeFromBottom(this FrameworkElement elem, float sec = 0.3f, bool keepMargin = true, int height = 0)
-        {
-            var sb = new Storyboard();
-            sb.AddSlideFromBottom(sec, height == 0 ? elem.ActualHeight : height, keepMargin: keepMargin);
-            sb.AddFadeIn(sec);
-            sb.Begin(elem);
-
-            if (sec != 0)
-                elem.Visibility = Visibility.Visible;
-
-            await Task.Delay((int)(sec * 1000));
-        }
-
-        public static async Task SlideAndFadeToBottom(this FrameworkElement elem, float sec = 0.3f, bool keepMargin = true, int height = 0)
-        {
-            var sb = new Storyboard();
-            sb.AddSlideToBottom(sec, height == 0 ? elem.ActualHeight : height, keepMargin: keepMargin);
-            sb.AddFadeOut(sec);
-            sb.Begin(elem);
-
-            if (sec != 0)
-                elem.Visibility = Visibility.Visible;
-
-            await Task.Delay((int)(sec * 1000));
-            elem.Visibility = Visibility.Hidden;
-        }
-
-        public static async Task FadeIn(this FrameworkElement elem, float sec = 0.3f)
-        {
-            var sb = new Storyboard();
-            sb.AddFadeIn(sec);
-            sb.Begin(elem);
-
-            if (sec != 0)
-                elem.Visibility = Visibility.Visible;
-
-            await Task.Delay((int)(sec * 1000));
-        }
-
-        public static async Task FadeOut(this FrameworkElement elem, float sec = 0.3f)
-        {
-            var sb = new Storyboard();
-            sb.AddFadeOut(sec);
-            sb.Begin(elem);
-
-            if (sec != 0)
-                elem.Visibility = Visibility.Visible;
-
-            await Task.Delay((int)(sec * 1000));
-            elem.Visibility = Visibility.Collapsed;
+            await Task.Delay((int)(seconds * 1000));
+            element.Visibility = Visibility.Collapsed;
         }
 
     }

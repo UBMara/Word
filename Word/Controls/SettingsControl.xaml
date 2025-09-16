@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Word"
+             xmlns:core="clr-namespace:Word.Core.ViewModel;assembly=Word.Core"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DataContext="{x:Static core:SettingsDesignModel.Instance}">
     <Border Background="{StaticResource LighterBackgroundBrush}" Padding="20">
         <Grid>
             <Grid.RowDefinitions>
@@ -45,26 +46,30 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Margin="0 0 30 0"
+                      VerticalAlignment="Top"
                       Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
 
                     <Border CornerRadius="8"
                             Name="Mask"
-                            Background="White"
-                            />
+                            Background="White"/>
                     <Grid>
                         <Grid.OpacityMask>
                             <VisualBrush Visual="{Binding ElementName=Mask}" />
                         </Grid.OpacityMask>
 
-                        <Image Source="C:\Users\muzum\source\repos\Word\Word\Images\rusty.jpg" Stretch="UniformToFill"/>
+                        <Image Source="/Images/rusty.jpg" Stretch="UniformToFill"/>
                     </Grid>
                 </Grid>
 
-                <StackPanel Grid.Column="1">
-                    <local:TextEntryControl />
-                    <local:TextEntryControl />
-                    <local:TextEntryControl />
-                    <local:TextEntryControl />
+                <StackPanel Grid.Column="1" local:TextEntryProperty.Value="True">
+                    <local:TextEntryControl DataContext="{Binding Name}"/>
+                    <local:TextEntryControl DataContext="{Binding Username}"/>
+                    <local:PasswordEntryControl DataContext="{Binding Password}"/>
+                    <local:TextEntryControl DataContext="{Binding Email}"/>
+
+                    <Button Content="{Binding LogoutText}" 
+                            Command="{Binding LogoutCommand}"
+                            FontSize="{StaticResource RegularFontSize}"/>
                 </StackPanel>
             </Grid>
         </Grid>

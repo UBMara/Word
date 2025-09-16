@@ -35,7 +35,10 @@
     <system:String x:Key="FontCogIcon">&#xf085;</system:String>
     <system:String x:Key="FontSearchIcon">&#xf002;</system:String>
     <system:String x:Key="FontEllipsesIcon">&#xf142;</system:String>
+    <system:String x:Key="FontHorizontalEllipsesIcon">&#xf141;</system:String>
     <system:String x:Key="FontPaperClipIcon">&#xf0c6;</system:String>
     <system:String x:Key="FontEmojiIcon">&#xf118;</system:String>
     <system:String x:Key="FontLeftArrowIcon">&#xf060;</system:String>
+    <system:String x:Key="FontCheckIcon">&#xf00c;</system:String> 
+    <system:String x:Key="FontCloseIcon">&#xf00d;</system:String>
 </ResourceDictionary>

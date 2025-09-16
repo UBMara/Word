@@ -17,6 +17,15 @@ namespace Word
         public static readonly DependencyProperty CurrentPageProperty =
             DependencyProperty.Register(nameof(CurrentPage), typeof(BasePage), typeof(PageHost), new UIPropertyMetadata(CurrentPagePropertyChange));
 
+        public BaseViewModel CurrentPageViewModel
+        {
+            get => (BaseViewModel)GetValue(CurrentPageViewModelProperty);
+            set => SetValue(CurrentPageViewModelProperty, value);
+        }
+
+        public static readonly DependencyProperty CurrentPageViewModelProperty =
+            DependencyProperty.Register(nameof(CurrentPageViewModel), typeof(BaseViewModel), typeof(PageHost), new UIPropertyMetadata());
+
         private static void CurrentPagePropertyChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var newPageFrame = (d as PageHost)?.NewPage;

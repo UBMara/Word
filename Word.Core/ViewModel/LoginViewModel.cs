@@ -31,11 +31,16 @@ namespace Word.Core.ViewModel
 
         public async Task Login(object parameter)
         {
-            await RunCommand(() => this.LoginIsRunning, async () =>
+            await RunCommand(() => LoginIsRunning, async () =>
             {
                 await Task.Delay(1000);
-                IoC.Application.GoToPage(ApplicationPage.Chat);
 
+                IoC.Settings.Name = new TextEntryViewModel { Label = "Name", OriginalText = $"Luke Malpass {DateTime.Now.ToLocalTime()}" };
+                IoC.Settings.Username = new TextEntryViewModel { Label = "Username", OriginalText = "luke" };
+                IoC.Settings.Password = new PasswordEntryViewModel { Label = "Password", FakePassword = "********" };
+                IoC.Settings.Email = new TextEntryViewModel { Label = "Email", OriginalText = "contact@gmail.com" };
+
+                IoC.Application.GoToPage(ApplicationPage.Chat);
             });
         }
     }

@@ -41,7 +41,7 @@ namespace Word
             switch (this.PageLoad)
             {
                 case PageAnimation.SlideAndFadeRight:
-                    await this.SlideAndFadeFromRight(this.SlideSec, width: (int)Application.Current.MainWindow.Width);
+                    await this.SlideAndFadeIn(AnimationSlideInDirection.Right, false, SlideSec, size: (int)Application.Current.MainWindow.Width);
                     break;
             }
         }
@@ -53,7 +53,7 @@ namespace Word
             switch (this.PageUnload)
             {
                 case PageAnimation.SlideAndFadeLeft:
-                    await this.SlideAndFadeToLeft(this.SlideSec);
+                    await this.SlideAndFadeOut(AnimationSlideInDirection.Right, SlideSec);
                     break;
             }
         }

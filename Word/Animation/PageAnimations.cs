@@ -9,7 +9,7 @@ namespace Word
             public static async Task SlideAndFadeFromRight(this Page page, float sec)
             {
                 var sb = new Storyboard();
-                sb.AddSlideRight(sec, page.WindowWidth);
+                sb.AddSlideFromRight(sec, page.WindowWidth);
                 sb.AddFadeIn(sec);
                 sb.Begin(page);
                 page.Visibility = Visibility.Visible;
@@ -21,7 +21,7 @@ namespace Word
         public static async Task SlideAndFadeToLeft(this Page page, float sec)
             {
                 var sb = new Storyboard();
-                sb.AddSlideLeft(sec, page.WindowWidth);
+                sb.AddSlideToLeft(sec, page.WindowWidth);
                 sb.AddFadeOut(sec);
                 sb.Begin(page);
                 page.Visibility = Visibility.Visible;

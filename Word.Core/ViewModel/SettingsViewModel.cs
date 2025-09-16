@@ -7,24 +7,50 @@ namespace Word.Core.ViewModel
     {
         public ICommand OpenCommand { get; set; }
         public ICommand CloseCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
+        public ICommand ClearUserDataCommand { get; set; }
 
         public TextEntryViewModel Name { get; set; }
         public TextEntryViewModel Username { get; set; }
-        public TextEntryViewModel Password { get; set; }
+        public PasswordEntryViewModel Password { get; set; }
         public TextEntryViewModel Email { get; set; }
+        public string LogoutText { get; set; }
 
         public SettingsViewModel()
         {
             OpenCommand = new RelayCommand(Open);
             CloseCommand = new RelayCommand(Close);
+            LogoutCommand = new RelayCommand(Logout);
+            ClearUserDataCommand = new RelayCommand(ClearUserData);
+
+            Name = new TextEntryViewModel { Label = "Name", OriginalText = "Luke Malpass" };
+            Username = new TextEntryViewModel { Label = "Username", OriginalText = "luke" };
+            Password = new PasswordEntryViewModel { Label = "Password", FakePassword = "********" };
+            Email = new TextEntryViewModel { Label = "Email", OriginalText = "contact@gmail.com" };
+
+            LogoutText = "Logout";
+        }
+        public void ClearUserData()
+        {
+            Name = null;
+            Username = null;
+            Password = null;
+            Email = null;
         }
 
-        private void Close()
+        public void Logout()
+        {
+            ClearUserData();
+
+            IoC.Application.GoToPage(ApplicationPage.Login);
+        }
+
+        public void Close()
         {
             IoC.Application.SettingsMenuVisible = false;
         }
 
-        private void Open()
+        public void Open()
         {
             IoC.Application.SettingsMenuVisible = true;
         }
